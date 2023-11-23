@@ -339,3 +339,40 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em;
 }
+
+#verifierDonnées {
+	font-size: 20px;
+	color: red;
+}
+
+.filter-buttons {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	gap: 25px;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 40px;
+}
+
+.filter-buttons button {
+	min-width: 100px;
+	font-family: 'Syne';
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 700;
+	border-radius: 25px;
+	padding: 10px;
+	border-color: #1D6154;
+	border-style: solid;
+	transition: 0.2s ease;
+}
+
+.filter-buttons button:hover, .active {
+	color: white;
+	background-color: #0E2F28;
+}
+
+.non-active {
+	color: #1D6154;
+}

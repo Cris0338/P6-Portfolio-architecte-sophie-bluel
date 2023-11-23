@@ -29,11 +29,12 @@
 		<main class="logInPage">
 			<section id="logIn">
 				<h2>Log In</h2>
-				<form action="#" method="post">
+				<h3 id="verifierDonnees"></h3>
+				<form id="loginForm" action="#" method="post">
 					<label for="email">Email</label>
-					<input type="email" name="email" id="email">
+					<input type="email" name="email" id="email" required>
 					<label for="password">Password</label>
-					<input type="password" name="password" id="password">
+					<input type="password" name="password" id="password" required>
 					<input type="submit" value="Se connecter">
                     <a href="">Mot de passe oublié</a>
 				</form>
@@ -47,6 +48,7 @@
 			</ul>
 		</nav>
 	</footer>
+	<script src="/assets/script.js"></script>
 </body>
 
 </html>
