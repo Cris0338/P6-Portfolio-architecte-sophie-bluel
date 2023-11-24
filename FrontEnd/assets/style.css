@@ -370,9 +370,5 @@ footer nav ul {
 
 .filter-buttons button:hover, .active {
 	color: white;
-	background-color: #0E2F28;
-}
-
-.non-active {
-	color: #1D6154;
+	background-color: #1D6154;
 }
