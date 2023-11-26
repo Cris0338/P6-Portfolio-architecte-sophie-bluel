@@ -400,40 +400,93 @@ footer nav ul {
 .modifier-container {
     display: flex;
     align-items: center;
-    margin-left: auto; /* Posiziona a destra */
-    margin-right: 30px; /* Distanza di circa 30px */
+    margin-left: auto;
+    margin-right: 30px;
     cursor: pointer;
 }
 
 .modifier-container i {
-    margin-right: 11px; /* Distanza di circa 11px tra l'icona e il testo */
+    margin-right: 11px;
 }
 
 /* modale */
 
+.modal-overlay {
+    position: fixed; /* Posizione fissa per coprire l'intera pagina */
+    top: 0; /* Inizia dall'alto della pagina */
+    left: 0; /* Inizia dal lato sinistro della pagina */
+    width: 100%; /* Copre l'intera larghezza della pagina */
+    height: 100%; /* Copre l'intera altezza della pagina */
+    background-color: rgba(0, 0, 0, 0.5); /* Sfondo nero semi-trasparente */
+    z-index: 9998; /* Assicura che l'overlay sia sopra gli altri elementi */
+}
+
+/* Stile di base della modale */
 .modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+	z-index: 9999;
+    display: none; /* Non mostrare per impostazione predefinita */
+    position: fixed; /* Posizione fissa per rimanere al centro dello schermo */
+    top: 50%; /* Posizione verticale al centro dello schermo */
+    left: 50%; /* Posizione orizzontale al centro dello schermo */
+    transform: translate(-50%, -50%); /* Adegua la posizione al centro esatto */
+    background-color: white; /* Sfondo bianco */
+    border-radius: 15px; /* Angoli arrotondati */
+    padding: 20px; /* Aggiunge uno spaziamento interno per migliorare l'aspetto */
+    width: 630px; /* Imposta la larghezza della modale */
+    height: 688px; /* Imposta l'altezza della modale */
+    overflow: auto; /* Consente lo scorrimento se la modale supera le dimensioni massime */
 }
 
+/* Stile del titolo nella modale */
+.gallery-title {
+    text-align: center; /* Centra il testo */
+    font-family: 'Work Sans', sans-serif; /* Utilizza il carattere Work Sans o uno simile */
+    font-size: 26px; /* Imposta la dimensione del carattere a 26px */
+    font-style: normal; /* Imposta lo stile del carattere come normale */
+    font-weight: 400; /* Imposta il peso del carattere a 400 */
+    margin-top: 60px; /* Aggiunge uno spaziamento sopra al titolo */
+    margin-bottom: 60px; /* Aggiunge uno spaziamento sotto al titolo */
+}
+
+/* Stile del contenuto delle miniature nella modale */
+.gallery-content {
+    display: grid; /* Utilizza un layout a griglia */
+    grid-template-columns: repeat(5, 78px); /* Crea 5 colonne con larghezza di 78px ciascuna */
+    gap: 6.25px; /* Aggiunge uno spazio tra colonne e righe */
+    justify-content: center; /* Centra la griglia orizzontalmente */
+    align-items: center; /* Centra la griglia verticalmente */
+}
+
+/* Stile delle miniature nella modale */
 .thumbnail {
-    position: relative;
-    margin: 10px;
-    /* Aggiungi altri stili a tuo piacimento */
+    position: relative; /* Posizione relativa per gli elementi figli */
+    box-sizing: border-box; /* Include il padding e il bordo nella larghezza e nell'altezza */
+    overflow: hidden; /* Per assicurarsi che le immagini non superino la scatola */
 }
 
+/* Stile delle immagini nelle miniature della modale */
 .thumbnail img {
-    width: 100px; /* Imposta la larghezza desiderata */
-    height: auto;
+    width: 100%; /* L'immagine occupa tutta la larghezza della cella della griglia */
+    height: 100%; /* L'immagine occupa tutta l'altezza della cella della griglia */
+    object-fit: cover; /* Adegua la dimensione dell'immagine per riempire completamente la cella della griglia */
+    border-radius: 0; /* Angoli retti per l'immagine */
 }
 
+/* Stile dell'icona per eliminare nelle miniature della modale */
 .thumbnail i {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    color: red; /* Colore a tua scelta */
-    cursor: pointer;
+    position: absolute; /* Posizione assoluta per posizionare con precisione */
+    top: 5px; /* Posizione rispetto all'alto */
+    right: 5px; /* Posizione rispetto alla destra */
+    color: white; /* Colore bianco */
+    cursor: pointer; /* Cursore che indica che l'elemento è cliccabile */
+    width: 17px; /* Larghezza desiderata per l'icona */
+    height: 17px; /* Altezza desiderata per l'icona */
+    background-color: black; /* Sfondo nero */
+    border-radius: 3px; /* Angoli leggermente arrotondati per l'icona */
+    display: flex; /* Utilizza un layout flessibile */
+    justify-content: center; /* Centra l'icona orizzontalmente */
+    align-items: center; /* Centra l'icona verticalmente */
+	font-size: 9px; /* Imposta la dimensione del carattere a 9px */
 }
+
+

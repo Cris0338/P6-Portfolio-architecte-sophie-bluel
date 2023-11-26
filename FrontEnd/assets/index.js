@@ -1,5 +1,7 @@
 // Importation des données depuis l'API
 import { getAllData } from "./api.js";
+// Importe les fonctions d'authentification depuis auth.js
+import { isAuthenticated, logout } from "./auth.js";
 
 // Création du tableau de tous les projets
 let allProjects = [];
@@ -21,7 +23,6 @@ function renderProjects(projects) {
         const titleElement = document.createElement('figcaption');
         titleElement.textContent = project.title;
 
-        // Ajout de l'image et du titre
         projectElement.appendChild(imgElement);
         projectElement.appendChild(titleElement);
 
@@ -124,3 +125,21 @@ async function loadProjects() {
 
 // Appel à la fonction de chargement des projets
 loadProjects();
+
+// Fonction pour mettre à jour dynamiquement le lien de connexion/déconnexion
+function updateLoginLink() {
+    const loginLink = document.getElementById('loginLink');
+
+    if (isAuthenticated()) {
+        // Si l'utente è autenticato, imposta il link su 'logout.html'
+        loginLink.href = 'logout.html';
+        loginLink.textContent = 'Logout';
+    } else {
+        // Si l'utente non è autenticato, imposta il link su 'login.html'
+        loginLink.href = 'login.html';
+        loginLink.textContent = 'Login';
+    }
+}
+
+// Appeler la fonction au démarrage de la page
+updateLoginLink();
