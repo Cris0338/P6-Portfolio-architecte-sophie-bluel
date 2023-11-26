@@ -70,3 +70,6 @@ loginForm.addEventListener('submit', function (event) {
         return serverData.token;
     }
 })
+
+// Enregistre token dans localStorage
+localStorage.setItem('authToken', classefetch.token);
