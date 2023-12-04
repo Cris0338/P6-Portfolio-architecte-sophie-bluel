@@ -159,11 +159,11 @@ body {
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0;
+	margin: 50px 0
 }
 
 section {
-	margin: 50px 0;
+	margin: 50px 0
 }
 
 h1 {
@@ -172,21 +172,21 @@ h1 {
 	font-family: 'Syne';
 	font-size: 22px;
 	font-weight: 800;
-	color: #B1663C;
+	color: #B1663C
 }
 
 h1>span {
 	font-family: 'Work Sans';
 	font-size: 10px;
 	letter-spacing: 0.1em;
-	;
+
 }
 
 h2 {
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
-	color: #1D6154;
+	color: #1D6154
 }
 
 nav ul {
@@ -211,7 +211,7 @@ li:hover {
 }
 
 #introduction figure {
-	flex: 1;
+	flex: 1
 }
 
 #introduction img {
@@ -221,7 +221,7 @@ li:hover {
 }
 
 #introduction article {
-	flex: 1;
+	flex: 1
 }
 
 #introduction h2 {
@@ -349,7 +349,7 @@ footer nav ul {
 
 /* Btns filtres parametres */
 
-.filter-buttons {
+.filtres {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
@@ -359,7 +359,7 @@ footer nav ul {
 	padding-bottom: 40px;
 }
 
-.filter-buttons button {
+.filtres button {
 	min-width: 100px;
 	font-family: 'Syne';
 	font-size: 16px;
@@ -370,16 +370,18 @@ footer nav ul {
 	border-color: #1D6154;
 	border-style: solid;
 	transition: 0.2s ease;
+	color: #1D6154;
 }
 
-.filter-buttons button:hover,
-.active {
+.filtres button.active,
+.filtres button:hover {
 	color: white;
 	background-color: #1D6154;
 }
 
 /* editor-bar */
 .editor-bar {
+	width: 100%;
 	color: white;
 	background-color: black;
 	font-family: Work Sans;
@@ -397,96 +399,246 @@ footer nav ul {
 
 /* gallery icone+modifier */
 
-.modifier-container {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    margin-right: 30px;
-    cursor: pointer;
+#portfolio {
+	position: relative;
 }
 
-.modifier-container i {
-    margin-right: 11px;
+.titleMod {
+	position: relative;
+	text-align: center;
+}
+
+.titleMod h2 {
+	display: inline-block;
+}
+
+.titleMod .modifiercontainer {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(135%, -150%);
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	gap: 11px;
+}
+
+/* overlay modale */
+
+.modal-overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 9998;
 }
 
 /* modale */
 
-.modal-overlay {
-    position: fixed; /* Posizione fissa per coprire l'intera pagina */
-    top: 0; /* Inizia dall'alto della pagina */
-    left: 0; /* Inizia dal lato sinistro della pagina */
-    width: 100%; /* Copre l'intera larghezza della pagina */
-    height: 100%; /* Copre l'intera altezza della pagina */
-    background-color: rgba(0, 0, 0, 0.5); /* Sfondo nero semi-trasparente */
-    z-index: 9998; /* Assicura che l'overlay sia sopra gli altri elementi */
-}
-
-/* Stile di base della modale */
 .modal {
+	display: none;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-around;
 	z-index: 9999;
-    display: none; /* Non mostrare per impostazione predefinita */
-    position: fixed; /* Posizione fissa per rimanere al centro dello schermo */
-    top: 50%; /* Posizione verticale al centro dello schermo */
-    left: 50%; /* Posizione orizzontale al centro dello schermo */
-    transform: translate(-50%, -50%); /* Adegua la posizione al centro esatto */
-    background-color: white; /* Sfondo bianco */
-    border-radius: 15px; /* Angoli arrotondati */
-    padding: 20px; /* Aggiunge uno spaziamento interno per migliorare l'aspetto */
-    width: 630px; /* Imposta la larghezza della modale */
-    height: 688px; /* Imposta l'altezza della modale */
-    overflow: auto; /* Consente lo scorrimento se la modale supera le dimensioni massime */
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white;
+	border-radius: 15px;
+	padding: 20px;
+	width: 630px;
+	height: 688px;
+	overflow: auto;
+
+
 }
 
-/* Stile del titolo nella modale */
-.gallery-title {
-    text-align: center; /* Centra il testo */
-    font-family: 'Work Sans', sans-serif; /* Utilizza il carattere Work Sans o uno simile */
-    font-size: 26px; /* Imposta la dimensione del carattere a 26px */
-    font-style: normal; /* Imposta lo stile del carattere come normale */
-    font-weight: 400; /* Imposta il peso del carattere a 400 */
-    margin-top: 60px; /* Aggiunge uno spaziamento sopra al titolo */
-    margin-bottom: 60px; /* Aggiunge uno spaziamento sotto al titolo */
+.gallery-h2 {
+	text-align: center;
+	color: #000;
+	text-align: center;
+	font-family: 'Work Sans';
+	font-size: 26px;
+	font-weight: 400;
 }
 
-/* Stile del contenuto delle miniature nella modale */
+/* Grid Thumbs */
 .gallery-content {
-    display: grid; /* Utilizza un layout a griglia */
-    grid-template-columns: repeat(5, 78px); /* Crea 5 colonne con larghezza di 78px ciascuna */
-    gap: 6.25px; /* Aggiunge uno spazio tra colonne e righe */
-    justify-content: center; /* Centra la griglia orizzontalmente */
-    align-items: center; /* Centra la griglia verticalmente */
+	display: grid;
+	grid-template-columns: repeat(5, 78px);
+	gap: 25px 6.25px;
+	justify-content: center;
+	align-items: center;
 }
 
-/* Stile delle miniature nella modale */
 .thumbnail {
-    position: relative; /* Posizione relativa per gli elementi figli */
-    box-sizing: border-box; /* Include il padding e il bordo nella larghezza e nell'altezza */
-    overflow: hidden; /* Per assicurarsi che le immagini non superino la scatola */
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
 }
 
-/* Stile delle immagini nelle miniature della modale */
 .thumbnail img {
-    width: 100%; /* L'immagine occupa tutta la larghezza della cella della griglia */
-    height: 100%; /* L'immagine occupa tutta l'altezza della cella della griglia */
-    object-fit: cover; /* Adegua la dimensione dell'immagine per riempire completamente la cella della griglia */
-    border-radius: 0; /* Angoli retti per l'immagine */
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 0;
 }
 
-/* Stile dell'icona per eliminare nelle miniature della modale */
+/* Thumbs Trash */
 .thumbnail i {
-    position: absolute; /* Posizione assoluta per posizionare con precisione */
-    top: 5px; /* Posizione rispetto all'alto */
-    right: 5px; /* Posizione rispetto alla destra */
-    color: white; /* Colore bianco */
-    cursor: pointer; /* Cursore che indica che l'elemento è cliccabile */
-    width: 17px; /* Larghezza desiderata per l'icona */
-    height: 17px; /* Altezza desiderata per l'icona */
-    background-color: black; /* Sfondo nero */
-    border-radius: 3px; /* Angoli leggermente arrotondati per l'icona */
-    display: flex; /* Utilizza un layout flessibile */
-    justify-content: center; /* Centra l'icona orizzontalmente */
-    align-items: center; /* Centra l'icona verticalmente */
-	font-size: 9px; /* Imposta la dimensione del carattere a 9px */
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	color: white;
+	cursor: pointer;
+	width: 17px;
+	height: 17px;
+	background-color: black;
+	border-radius: 3px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 9px;
 }
 
+.ligne {
+	width: 420px;
+	height: 1px;
+	background: #B3B3B3;
+	;
+}
 
+#ajout-photo {
+	width: 237px;
+	font-family: 'Syne';
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 700;
+	border-radius: 25px;
+	padding: 10px;
+	border-color: #1D6154;
+	border-style: solid;
+	transition: 0.2s ease;
+	color: white;
+	background-color: #1D6154;
+}
+
+.modal2 {
+	display: none;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	z-index: 9999;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white;
+	border-radius: 15px;
+	padding-top: 0;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-bottom: 40px;
+	width: 630px;
+	height: 688px;
+	overflow: auto;
+}
+
+.ico {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-between;
+	font-size: 20px;
+}
+
+.ico .fa-solid {
+	cursor: pointer;
+}
+
+.img-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 40px;
+
+}
+
+.upload-img-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 13px;
+	width: 420px;
+	height: 169px;
+	border-radius: 3px;
+	background: #E8F1F6;
+}
+
+.upload-img-container i {
+	font-size: 50px;
+	color: #CBD6DC;
+}
+
+.upload-img-container p {
+	color: #444;
+	text-align: center;
+	font-family: 'Work Sans';
+	font-size: 10px;
+	font-weight: 400;
+}
+
+#up-photo {
+	width: 173px;
+	font-family: 'Work Sans';
+	font-size: 14px;
+	font-weight: 500;
+	border-radius: 50px;
+	padding: 10px;
+	border-color: #CBD6DC;
+	border-style: solid;
+	transition: 0.2s ease;
+	color: #306685;
+	background-color: #CBD6DC;
+}
+
+.info-img {
+	width: 420px;
+	display: flex;
+	flex-direction: column;
+	align-content: flex-start;
+	gap: 21px;
+	color: #3D3D3D;
+	font-family: 'Work Sans';
+	font-size: 14px;
+	font-weight: 500;
+}
+
+#titre,
+#dropdown {
+	height: 51px;
+	border: none;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+}
+
+#valider {
+	width: 237px;
+	font-family: 'Syne';
+	font-size: 14px;
+	font-weight: 700;
+	border-radius: 50px;
+	padding: 10px;
+	border-color: #A7A7A7;
+	border-style: solid;
+	transition: 0.2s ease;
+	color: #FFF;
+	background-color: #A7A7A7;
+
+}

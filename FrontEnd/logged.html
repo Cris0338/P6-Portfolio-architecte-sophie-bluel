@@ -28,7 +28,7 @@
 				<ul>
 					<li><a href="#portfolio">Projets</a></li>
 					<li><a href="#contact">Contact</a></li>
-					<li><a id="loginLink" href="login.html">Login</a></li>
+					<li><a id="loginLink" href="../login.html">Login</a></li>
 					<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 				</ul>
 			</nav>
@@ -50,13 +50,19 @@
 				</article>
 			</section>
 			<section id="portfolio">
-				<div>
+				<div class="titleMod">
+
 					<h2>Mes Projets</h2>
+
+					<div class="modifiercontainer">
+						<i class="fa-regular fa-pen-to-square"></i>
+						<div id="">modifier</div>
+					</div>
 				</div>
 				<div class="gallery">
-					<i class="fa-regular fa-pen-to-square"></i>
+
 				</div>
-				<div id="modifierContainer"></div>
+
 			</section>
 			<section id="contact">
 				<h2>Contact</h2>
@@ -81,10 +87,47 @@
 			</ul>
 		</nav>
 	</footer>
-	<div id="galleryModal" class="modal">
-		<!-- Contenu de la modale -->
+	<div class="modal-overlay">
+		<div id="galleryModal" class="modal">
+			<!-- Contenu de la modale -->
+			<h2 class="gallery-h2">Galerie Photo</h2>
+			<div class="gallery-content"></div>
+			<!-- Chargement de la galerie -->
+			<div class="ligne"></div>
+			<button id="ajout-photo">Ajouter une photo</button>
+		</div>
+		<div id="uploadModal" class="modal2">
+			<!-- Contenu de la modale -->
+			<div class="ico">
+				<i class="fa-solid fa-arrow-left"></i>
+				<i class="fa-solid fa-xmark"></i>
+			</div>
+			<h2 class="gallery-h2">Ajout Photo</h2>
+			<div class="img-container">
+			<div class="upload-img-container">
+				<i class="fa-regular fa-image"></i>
+				<button id="up-photo">+ Ajouter une photo</button>
+				<p>jpg, png : 4mo max</p>
+			</div>
+			<div class="info-img">
+			<label for="titre">Titre</label>
+			<input type="text" name="titre" id="titre">
+			<label for="categorie">Catégorie</label>
+			<select id="dropdown" name="categorie"></select>
+			</div>
+			
+			<div class="ligne"></div>
+			<button id="valider">Valider</button>
+		</div>
+		</div>
 	</div>
-	<script type="module" src="assets/logged.js"></script>
+
+	<script type="module" src="assets/auth.js"></script>
+	<script type="module" src="assets/gallery.js"></script>
+	<script type="module" src="assets/modale.js"></script>
+	<script type="module" src="assets/dropdownMenu.js"></script>
+
+
 
 </body>
 

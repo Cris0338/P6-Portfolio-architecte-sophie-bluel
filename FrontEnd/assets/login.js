@@ -12,7 +12,7 @@ loginForm.addEventListener('submit', function (event) {
         // test
         console.log('Vérifiez les données et réessayez !');
         // Affiche un message d'erreur dans le champ verifierDonnées
-        let verifierDonnees = document.getElementById(`verifierDonnées`)
+        let verifierDonnees = document.getElementById(`verifierDonnees`)
         verifierDonnees.textContent = `Vérifiez les données et réessayez !`;
 
         // Animation d'erreur pour verifierDonnées

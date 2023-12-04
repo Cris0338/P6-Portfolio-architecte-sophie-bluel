@@ -1,92 +1,47 @@
-// Fonction pour vérifier si l'utilisateur est authentifié
-export function isAuthenticated() {
-    const authToken = localStorage.getItem('authToken');
-    return authToken !== null;
-}
+// auth.js
+let loginLink = document.getElementById('loginLink');
 
-// Fonction pour effectuer la Login
-export function login(email, password) {
-    const user = {
-        email: email,
-        password: password
-    };
-
-    return fetch('http://localhost:5678/api/users/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Erreur HTTP ! Statut : ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(json => {
-        // Vérification des données du serveur
-        if (checkData(json)) {
-            // Sauvegarde du jeton dans le localStorage
-            localStorage.setItem('authToken', json.token);
-            updateLoginLink(); // Met à jour dynamiquement le lien de Login/Logout
-            return true; // Login réussie
-        } else {
-            return false; // Login échouée
-        }
-    })
-    .catch(error => {
-        console.error('Problème avec votre opération fetch :', error);
-        return false; // Login échouée en raison d'une erreur
-    });
-}
-
-// Fonction pour effectuer la Logout
-export function logout() {
-    // Supprime le jeton du localStorage
-    localStorage.removeItem('authToken');
-    updateLoginLink(); // Met à jour dynamiquement le lien de Login/Logout
-}
-
-// Fonction pour vérifier les données du serveur
-function checkData(serverData) {
-    return serverData.token;
-}
-
-// Fonction pour mettre à jour dynamiquement le lien de Login/Logout
-function updateLoginLink() {
-    const loginLink = document.getElementById('loginLink');
-
-    if (isAuthenticated()) {
-        // Si l'utilisateur est authentifié, configure le lien sur "Logout" et associe la fonction de Logout
+// Controlla se l'utente è loggato
+function checkUserLoggedIn() {
+    let token = localStorage.getItem('authToken');
+    if (token) {
+        // Se l'utente è loggato, cambia il testo del link in "Logout"
         loginLink.textContent = 'Logout';
-        loginLink.href = '#'; // Remplacez par l'URL ou la fonction de Logout appropriée
+        loginLink.href = '#';
         loginLink.addEventListener('click', logout);
 
-        // Crée un nouvel élément li pour le lien vers la page utilisateur
-        const userPageLink = document.createElement('li');
-        const userPageAnchor = document.createElement('a');
-        userPageAnchor.href = 'logged.html'; // Modifiez ici pour rediriger vers logged.html
-        userPageAnchor.textContent = 'Modifier';
-        userPageLink.appendChild(userPageAnchor);
+        // Aggiungi il link a logged.html nel menu
+        let ul = document.querySelector('nav ul');
+        let newLi = document.createElement('li');
+        let newLink = document.createElement('a');
+        newLink.href = 'logged.html';
+        newLink.textContent = 'Modifier';
+        newLi.appendChild(newLink);
 
-        // Récupère la liste ul parente
-        const navList = loginLink.parentElement.parentElement;
-
-        // Ajoute le nouvel élément li après le deuxième élément (index 2, basé sur zéro)
-        navList.insertBefore(userPageLink, navList.children[2]);
+        // Inserisci il nuovo elemento li in terza posizione
+        ul.insertBefore(newLi, ul.children[2]);
     } else {
-        // Si l'utilisateur n'est pas authentifié, configure le lien sur "Login" et associe l'URL de la page de Login
+        // Se l'utente non è loggato, assicurati che il link punti alla pagina di login
         loginLink.textContent = 'Login';
         loginLink.href = 'login.html';
-
-        // Supprime le lien vers la page utilisateur s'il existe
-        const userPageLink = document.querySelector('#userPageLink');
-        if (userPageLink) {
-            userPageLink.remove();
+        // Se l'utente non è loggato e sta cercando di accedere a logged.html, reindirizzalo a login.html
+        if (window.location.pathname.endsWith('logged.html')) {
+            window.location.href = 'login.html';
         }
     }
 }
 
-// Appel initial pour mettre à jour le lien en fonction de l'état d'authentification lors du chargement de la page
-updateLoginLink();
+
+// Funzione per gestire il logout
+function logout(event) {
+    event.preventDefault();
+    // Rimuove il token dal localStorage
+    localStorage.removeItem('authToken');
+    // Reindirizza l'utente alla pagina di login
+    window.location.href = 'login.html';
+}
+
+// Esegui la funzione checkUserLoggedIn quando la pagina viene caricata
+window.addEventListener('DOMContentLoaded', checkUserLoggedIn);
+
+
