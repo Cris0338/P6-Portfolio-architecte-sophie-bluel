@@ -145,3 +145,16 @@ backBtn.addEventListener('click', (event) => {
     // Ferma la propagazione dell'evento click per evitare la chiusura della modale
     event.stopPropagation();
 });
+
+// Aggiungi un gestore di eventi al pulsante "Ajouter une photo" nella modale galleryModal
+addPhoto.addEventListener('click', (event) => {
+    // Nascondi la modale galleryModal
+    galleryModal.style.display = 'none';
+
+    // Mostra la modale uploadModal
+    const uploadModal = document.getElementById('uploadModal');
+    uploadModal.style.display = 'flex';
+
+    // Ferma la propagazione dell'evento click per evitare la chiusura della modale
+    event.stopPropagation();
+});

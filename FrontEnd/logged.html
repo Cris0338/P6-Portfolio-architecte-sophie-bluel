@@ -104,21 +104,21 @@
 			</div>
 			<h2 class="gallery-h2">Ajout Photo</h2>
 			<div class="img-container">
-			<div class="upload-img-container">
-				<i class="fa-regular fa-image"></i>
-				<button id="up-photo">+ Ajouter une photo</button>
-				<p>jpg, png : 4mo max</p>
+				<div class="upload-img-container">
+					<i class="fa-regular fa-image"></i>
+					<button id="up-photo">+ Ajouter une photo</button>
+					<p>jpg, png : 4mo max</p>
+				</div>
+				<div class="info-img">
+					<label for="titre">Titre</label>
+					<input type="text" name="titre" id="titre">
+					<label for="categorie">Catégorie</label>
+					<select id="dropdown" name="categorie"></select>
+				</div>
+
+				<div class="ligne"></div>
+				<button id="valider">Valider</button>
 			</div>
-			<div class="info-img">
-			<label for="titre">Titre</label>
-			<input type="text" name="titre" id="titre">
-			<label for="categorie">Catégorie</label>
-			<select id="dropdown" name="categorie"></select>
-			</div>
-			
-			<div class="ligne"></div>
-			<button id="valider">Valider</button>
-		</div>
 		</div>
 	</div>
 
@@ -126,6 +126,7 @@
 	<script type="module" src="assets/gallery.js"></script>
 	<script type="module" src="assets/modale.js"></script>
 	<script type="module" src="assets/dropdownMenu.js"></script>
+	<script type="module" src="assets/addPhoto.js"></script>
 
 
 
