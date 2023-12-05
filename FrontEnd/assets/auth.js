@@ -31,7 +31,6 @@ function checkUserLoggedIn() {
     }
 }
 
-
 // Funzione per gestire il logout
 function logout(event) {
     event.preventDefault();
@@ -44,4 +43,8 @@ function logout(event) {
 // Esegui la funzione checkUserLoggedIn quando la pagina viene caricata
 window.addEventListener('DOMContentLoaded', checkUserLoggedIn);
 
-
+// Aggiungi un gestore per l'evento beforeunload
+window.addEventListener('beforeunload', function () {
+    // Esegui il logout prima che l'utente lasci la pagina
+    logout();
+});
