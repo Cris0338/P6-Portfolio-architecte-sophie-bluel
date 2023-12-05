@@ -1,3 +1,5 @@
+// dropdownMenu.js
+
 import { getAllData } from './api.js';
 
 document.addEventListener('DOMContentLoaded', async function () {
@@ -14,6 +16,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   // Ottieni dinamicamente tutte le categorie dalla risposta dell'API
   const categories = [...new Set(data.map(item => item.category.name))];
+  console.log(categories)
 
   // Creazione dinamica degli elementi del dropdown menu
   categories.forEach(category => {

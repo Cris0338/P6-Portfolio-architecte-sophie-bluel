@@ -1,4 +1,3 @@
-// uploadPhoto.js
 document.addEventListener('DOMContentLoaded', function () {
     const submitBtn = document.getElementById('valider');
 
@@ -9,11 +8,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const categorySelect = document.getElementById('dropdown');
         const selectedCategory = categorySelect.options[categorySelect.selectedIndex].value;
 
+        // Estrai solo l'URL dell'immagine da imageData
+        const imageUrl = imageData.src;
+
         // Assicurati che tutti i campi siano compilati prima di procedere
-        if (imageData && titleInput && selectedCategory) {
+        if (imageUrl && titleInput && selectedCategory) {
             // Crea un oggetto FormData per inviare i dati
             const formData = new FormData();
-            formData.append('image', imageData);
+            formData.append('image', imageUrl); // Modifica questa linea
             formData.append('title', titleInput);
             formData.append('category', selectedCategory);
 

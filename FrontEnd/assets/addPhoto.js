@@ -1,3 +1,5 @@
+// addPhoto.js
+
 // Ottieni riferimenti agli elementi HTML
 const uploadBtn = document.getElementById('up-photo');
 const imageContainer = document.querySelector('.upload-img-container');

@@ -1,3 +1,4 @@
+// modale.js
 import { getAllData } from './api.js';
 
 // Ottieni tutti i dati dall'API
