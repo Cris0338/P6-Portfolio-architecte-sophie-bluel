@@ -41,26 +41,13 @@ function showTrashIcon() {
     // Crea il quadratino nero
     const squareDiv = document.createElement('div');
     squareDiv.classList.add(`blackbox`);
-    squareDiv.style.width = '17px';
-    squareDiv.style.height = '17px';
-    squareDiv.style.backgroundColor = 'black';
-    squareDiv.style.position = 'absolute';
-    squareDiv.style.top = '5px';
-    squareDiv.style.right = '5px';
 
     // Crea l'icona "trash" bianca
     const trashIcon = document.createElement('i');
     trashIcon.classList.add('fa-solid', 'fa-trash-alt', 'trash-icon', 'white-trash-icon');
 
-    // Stili per centrare l'icona nel quadratino
-    trashIcon.style.display = 'flex';
-    trashIcon.style.alignItems = 'center';
-    trashIcon.style.justifyContent = 'center';
-    trashIcon.style.width = '100%';
-    trashIcon.style.height = '100%';
-
     // Imposta le dimensioni dell'icona "trash"
-    trashIcon.style.fontSize = '14px';
+    trashIcon.style.fontSize = '10px';
 
     // Aggiungi un evento di clic per eliminare l'immagine
     trashIcon.addEventListener('click', handleTrashClick);

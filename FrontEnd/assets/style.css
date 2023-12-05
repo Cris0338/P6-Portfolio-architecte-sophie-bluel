@@ -601,6 +601,20 @@ footer nav ul {
 	font-weight: 400;
 }
 
+.blackbox {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	background: black;
+	border-radius: 5px;
+	width: 18px;
+	height: 20px;
+}
+
 #up-photo {
 	width: 173px;
 	font-family: 'Work Sans';
