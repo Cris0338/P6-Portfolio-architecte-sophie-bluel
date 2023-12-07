@@ -1,29 +1,15 @@
 // addPhoto.js
 
 // Ottieni riferimenti agli elementi HTML
-const uploadBtn = document.getElementById('up-photo');
+const upfile = document.getElementById('up-photo');
 const imageContainer = document.querySelector('.upload-img-container');
-const inputFile = document.createElement('input');
-inputFile.type = 'file';
-inputFile.accept = 'image/jpeg, image/png';
-inputFile.style.display = 'none';
-imageContainer.appendChild(inputFile);
-
-// Aggiungi un gestore di eventi al pulsante "Ajouter une photo" nella modale galleryModal
-uploadBtn.addEventListener('click', (event) => {
-    // Ferma la propagazione dell'evento click per evitare la chiusura della modale
-    event.stopPropagation();
-
-    // Mostra l'input di tipo file per aprire la finestra di esplora risorse
-    inputFile.click();
-});
+const uploadBtn = document.querySelector('.btn-up-photo');
 
 // Aggiungi un gestore di eventi al cambio di selezione del file
-inputFile.addEventListener('change', handleFileSelect);
+upfile.addEventListener('change', handleFileSelect);
 
 function toggleUploadElements(show) {
     const faImage = document.querySelector('.fa-image');
-    const uploadBtn = document.getElementById('up-photo');
     const infoParagraph = document.querySelector('.upload-img-container p');
 
     if (show) {
@@ -65,7 +51,8 @@ function showTrashIcon() {
 
 
 function handleFileSelect() {
-    const selectedFile = inputFile.files[0];
+    console.log(handleFileSelect)
+    const selectedFile = upfile.files[0];
 
     if (selectedFile) {
         // Verifica il tipo del file e la dimensione
@@ -100,7 +87,7 @@ function handleFileSelect() {
     }
 }
 
-function handleTrashClick(event) {
+function handleTrashClick() {
     // Rimuovi l'immagine preview
     const imageContainer = document.querySelector('.upload-img-container');
     imageContainer.removeChild(imageContainer.lastChild);
@@ -112,5 +99,5 @@ function handleTrashClick(event) {
     const trashIcon = document.querySelector('.blackbox');
     trashIcon.parentNode.removeChild(trashIcon);
 
-    event.stopPropagation();
+    
 }

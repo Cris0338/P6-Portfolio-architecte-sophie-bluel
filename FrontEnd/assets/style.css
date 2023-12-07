@@ -247,6 +247,8 @@ li:hover {
 
 .gallery img {
 	width: 100%;
+	height: 405px;
+	object-fit: cover;
 
 }
 
@@ -485,7 +487,7 @@ footer nav ul {
 
 .thumbnail img {
 	width: 100%;
-	height: 100%;
+	height: 102px;
 	object-fit: cover;
 	border-radius: 0;
 }
@@ -615,22 +617,40 @@ footer nav ul {
 	height: 20px;
 }
 
-#up-photo {
-	width: 173px;
-	font-family: 'Work Sans';
-	font-size: 14px;
-	font-weight: 500;
-	border-radius: 50px;
-	padding: 10px;
-	border-color: #CBD6DC;
-	border-style: solid;
-	transition: 0.2s ease;
-	color: #306685;
-	background-color: #CBD6DC;
+.btn-up-photo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    width: 173px;
+    font-family: 'Work Sans';
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 50px;
+    padding: 10px;
+    border: 1px solid #CBD6DC;
+    color: #306685;
+    background-color: #CBD6DC;
+    /* cursor: pointer; */
+    transition: 0.2s ease;
 }
 
-#up-photo:hover {
-	box-shadow: 0px 4px 14px 0px #306685;}
+#up-photo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    /* cursor: pointer; */
+	display: none;
+}
+
+.btn-up-photo:hover {
+    box-shadow: 0px 4px 14px 0px #306685;
+}
+
 
 .info-img {
 	width: 420px;

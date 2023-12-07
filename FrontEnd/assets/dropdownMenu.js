@@ -1,6 +1,7 @@
 // dropdownMenu.js
 
 import { getAllData } from './api.js';
+import { getAllCategories } from './api.js';
 
 document.addEventListener('DOMContentLoaded', async function () {
   const dropdownSelect = document.getElementById('dropdown');
@@ -12,22 +13,14 @@ document.addEventListener('DOMContentLoaded', async function () {
   dropdownSelect.appendChild(emptyOption);
 
   // Ottieni tutti i dati dall'API
-  const data = await getAllData();
+  const categories = await getAllCategories();
 
-  // Ottieni dinamicamente tutte le categorie dalla risposta dell'API
-  const categories = [...new Set(data.map(item => item.category.name))];
-  console.log(categories)
-
-  // Creazione dinamica degli elementi del dropdown menu
+    // Creazione dinamica degli elementi del dropdown menu
   categories.forEach(category => {
     const option = document.createElement('option');
-    option.value = category;
-    option.textContent = category;
+    option.value = category.id;
+    option.textContent = category.name;
     dropdownSelect.appendChild(option);
   });
 
-  // Impedisci la propagazione del click al di fuori del menu a discesa
-  dropdownSelect.addEventListener('click', function (event) {
-    event.stopPropagation();
-  });
 });

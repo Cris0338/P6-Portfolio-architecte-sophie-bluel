@@ -25,8 +25,8 @@ function renderProjectsModal(projects) {
         const deleteIcon = document.createElement('i');
         deleteIcon.classList.add('fa-solid', 'fa-trash-alt');
 
-        deleteIcon.addEventListener('click', (event) => {
-            event.stopPropagation();
+        deleteIcon.addEventListener('click', () => {
+            
             deleteImageCallback(project.id);
         });
 
@@ -43,8 +43,8 @@ overlay.addEventListener('click', closeModal);
 
 // Aggiungi un event listener per l'icona fa-xmark
 const xMarkIcon = document.querySelector('.fa-xmark');
-xMarkIcon.addEventListener('click', (event) => {
-    event.stopPropagation();
+xMarkIcon.addEventListener('click', () => {
+    
     uploadModal.style.display = 'none';
     galleryModal.style.display = 'flex';
     document.body.style.overflow = '';
@@ -113,16 +113,16 @@ function renderProjects(projects) {
 
 const addPhoto = document.getElementById('ajout-photo');
 
-addPhoto.addEventListener('click', (event) => {
+addPhoto.addEventListener('click', () => {
     galleryModal.style.display = 'none';
     uploadModal.style.display = 'flex';
-    event.stopPropagation();
+    
 });
 
 const backBtn = document.querySelector('.fa-arrow-left');
 
-backBtn.addEventListener('click', (event) => {
+backBtn.addEventListener('click', () => {
     uploadModal.style.display = 'none';
     galleryModal.style.display = 'flex';
-    event.stopPropagation();
+    
 });

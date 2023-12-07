@@ -1,23 +1,25 @@
+// uploadPoto.js
+
+const image = document.getElementById("up-photo");
+const title = document.getElementById('titre');
+const category = document.getElementById('dropdown');
+
+image.addEventListener('change', inputCheck)
+title.addEventListener('change', inputCheck)
+category.addEventListener('change', inputCheck)
+
 document.addEventListener('DOMContentLoaded', function () {
     const submitBtn = document.getElementById('valider');
 
     submitBtn.addEventListener('click', function () {
-        // Ottieni i dati dall'localStorage
-        const imageData = JSON.parse(localStorage.getItem('temporaryImage'));
-        const titleInput = document.getElementById('titre').value;
-        const categorySelect = document.getElementById('dropdown');
-        const selectedCategory = categorySelect.options[categorySelect.selectedIndex].value;
-
-        // Estrai solo l'URL dell'immagine da imageData
-        const imageUrl = imageData.src;
 
         // Assicurati che tutti i campi siano compilati prima di procedere
-        if (imageUrl && titleInput && selectedCategory) {
+        if (title.value && category.value && image.files[0]) {
             // Crea un oggetto FormData per inviare i dati
             const formData = new FormData();
-            formData.append('image', imageUrl); // Modifica questa linea
-            formData.append('title', titleInput);
-            formData.append('category', selectedCategory);
+            formData.append('title', title.value);
+            formData.append('category', category.value);
+            formData.append('image', image.files[0]);
 
             // Effettua la richiesta al server
             uploadPhoto(formData);
@@ -27,6 +29,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+function inputCheck() {
+    const valider = document.getElementById('valider');
+    if (title.value && category.value && image.files[0]) {
+        valider.style.backgroundColor = '#1D6154'
+        valider.style.borderColor = '#1D6154'
+    }
+    else {
+        valider.style.backgroundColor = '#A7A7A7'
+        valider.style.borderColor = '#A7A7A7'
+    }
+
+}
+
 
 async function uploadPhoto(formData) {
     try {
