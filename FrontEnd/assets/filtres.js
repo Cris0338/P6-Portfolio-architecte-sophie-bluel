@@ -1,44 +1,49 @@
-import { getAllData } from './api.js';
+// filtres.js
+
+// Importation des modules nécessaires depuis les fichiers gallery.js et api.js
+import { getAllCategories } from './api.js';
 import { filterGallery } from './gallery.js';
 
+// Événement déclenché lorsque le DOM est complètement chargé
 document.addEventListener('DOMContentLoaded', async function () {
+    // Sélection de l'élément HTML avec la classe 'filtres'
     const filtersContainer = document.querySelector('.filtres');
 
-    // Ottieni tutti i dati dall'API per identificare le categorie
-    const data = await getAllData();
-    const categories = Array.from(new Set(data.map(item => item.category.name)));
+    // Obtention de toutes les catégories depuis l'API
+    const categories = await getAllCategories(); // Utilisation de la fonction getAllCategories au lieu de getAllData
 
-    // Aggiungi il pulsante "All" alla fine dell'elemento esistente
+    // Création et ajout du bouton "Tous" à la fin de l'élément existant
     const allButton = createFilterButton('Tous');
     allButton.addEventListener('click', () => handleFilterClick(allButton, 'Tous'));
     filtersContainer.appendChild(allButton);
 
-    // Aggiungi i pulsanti per ogni categoria esistente
+    // Ajout des boutons pour chaque catégorie existante
     categories.forEach(category => {
-        const categoryButton = createFilterButton(category);
-        categoryButton.addEventListener('click', () => handleFilterClick(categoryButton, category));
+        const categoryButton = createFilterButton(category.name); // Utilisation de category.name comme texte du bouton
+        categoryButton.addEventListener('click', () => handleFilterClick(categoryButton, category.name));
         filtersContainer.appendChild(categoryButton);
     });
 
-    // Imposta il pulsante "Tous" come attivo all'avvio della pagina
+    // Définition du bouton "Tous" comme actif au chargement de la page
     allButton.classList.add('active');
 });
 
-function createFilterButton(category) {
+// Fonction pour créer un bouton de filtre avec le nom de la catégorie
+function createFilterButton(categoryName) {
     const button = document.createElement('button');
-    button.textContent = category;
+    button.textContent = categoryName;
     return button;
 }
 
-function handleFilterClick(clickedButton, category) {
-    // Rimuovi la classe 'active' da tutti i pulsanti
+// Fonction pour gérer le clic sur un bouton de filtre
+function handleFilterClick(clickedButton, categoryName) {
+    // Retire la classe 'active' de tous les boutons
     const allButtons = document.querySelectorAll('.filtres button');
     allButtons.forEach(button => button.classList.remove('active'));
 
-    // Aggiungi la classe 'active' al pulsante cliccato
+    // Ajoute la classe 'active' au bouton cliqué
     clickedButton.classList.add('active');
 
-    // Chiamata alla funzione filterGallery con la categoria selezionata
-    filterGallery(category);
+    // Appel à la fonction filterGallery avec la catégorie sélectionnée
+    filterGallery(categoryName);
 }
-
