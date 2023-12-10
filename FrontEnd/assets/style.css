@@ -342,13 +342,6 @@ footer nav ul {
 	margin: 2em;
 }
 
-/* Message erreur login */
-
-#verifierDonnées {
-	font-size: 20px;
-	color: red;
-}
-
 /* Btns filtres parametres */
 
 .filtres {
