@@ -1,21 +1,20 @@
 // dropdownMenu.js
 
-import { getAllData } from './api.js';
 import { getAllCategories } from './api.js';
 
 document.addEventListener('DOMContentLoaded', async function () {
   const dropdownSelect = document.getElementById('dropdown');
 
-  // Aggiungi un'opzione vuota
+  // Ajoute un ligne vide
   const emptyOption = document.createElement('option');
   emptyOption.value = '';
   emptyOption.textContent = '';
   dropdownSelect.appendChild(emptyOption);
 
-  // Ottieni tutti i dati dall'API
+  // Recupère les données API
   const categories = await getAllCategories();
 
-    // Creazione dinamica degli elementi del dropdown menu
+    // Crée les elements du dropdown menu
   categories.forEach(category => {
     const option = document.createElement('option');
     option.value = category.id;

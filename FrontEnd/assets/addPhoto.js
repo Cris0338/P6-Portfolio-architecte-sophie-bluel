@@ -1,17 +1,18 @@
 // addPhoto.js
 
-// Ottieni riferimenti agli elementi HTML
+// Références aux éléments HTML
 const upfile = document.getElementById('up-photo');
 const imageContainer = document.querySelector('.upload-img-container');
 const uploadBtn = document.querySelector('.btn-up-photo');
 
-// Aggiungi un gestore di eventi al cambio di selezione del file
+// Ajoute un gestionnaire d'événements pour le changement de sélection de fichier
 upfile.addEventListener('change', handleFileSelect);
 
 function toggleUploadElements(show) {
     const faImage = document.querySelector('.fa-image');
     const infoParagraph = document.querySelector('.upload-img-container p');
 
+    // Si show est vrai, affiche les éléments, sinon cache-les
     if (show) {
         faImage.style.display = 'block';
         uploadBtn.style.display = 'block';
@@ -26,78 +27,76 @@ function toggleUploadElements(show) {
 function showTrashIcon() {
     const uploadContainer = document.querySelector('.upload-img-container');
 
-    // Crea il quadratino nero
+    // Crée le carré noir
     const squareDiv = document.createElement('div');
     squareDiv.classList.add(`blackbox`);
 
-    // Crea l'icona "trash" bianca
+    // Crée l'icône corbeille blanche
     const trashIcon = document.createElement('i');
     trashIcon.classList.add('fa-solid', 'fa-trash-alt', 'trash-icon', 'white-trash-icon');
 
-    // Imposta le dimensioni dell'icona "trash"
+    // Définis la taille de l'icône corbeille
     trashIcon.style.fontSize = '10px';
 
-    // Aggiungi un evento di clic per eliminare l'immagine
+    // Ajoute un événement click pour supprimer l'image
     trashIcon.addEventListener('click', handleTrashClick);
 
-    // Aggiungi l'icona "trash" nel quadratino nero
+    // Ajoute l'icône "corbeille" dans le carré noir
     squareDiv.appendChild(trashIcon);
 
-    // Aggiungi il quadratino nero in alto a destra del contenitore
-    uploadContainer.style.position = 'relative'; // Aggiunto per garantire che il posizionamento assoluto funzioni correttamente
+    // Ajoute le carré noir en haut à droite du conteneur
+    uploadContainer.style.position = 'relative'; // Ajouté pour garantir que le positionnement absolu fonctionne correctement
     uploadContainer.appendChild(squareDiv);
 }
-
-
 
 function handleFileSelect() {
     console.log(handleFileSelect)
     const selectedFile = upfile.files[0];
 
+    // Si un fichier est sélectionné
     if (selectedFile) {
-        // Verifica il tipo del file e la dimensione
+        // Vérifie le type de fichier et la taille
         const isValidFileType = ['image/jpeg', 'image/png'].includes(selectedFile.type);
-        const isValidFileSize = selectedFile.size <= 4 * 1024 * 1024; // 4 MB in bytes
+        const isValidFileSize = selectedFile.size <= 4 * 1024 * 1024; // 4 Mo en octets
 
+        // Si le type de fichier et la taille sont valides
         if (isValidFileType && isValidFileSize) {
-            // Nascondi il pulsante e il paragrafo
+            // Cache le bouton et le paragraphe
             toggleUploadElements(false);
 
-            // Mostra l'icona "trash"
+            // Affiche l'icône corbeille
             showTrashIcon();
 
-            // Mostra l'anteprima dell'immagine selezionata
+            // Affiche un aperçu de l'image sélectionnée
             const imagePreview = document.createElement('img');
             imagePreview.src = URL.createObjectURL(selectedFile);
             imagePreview.alt = 'Selected Image';
             imageContainer.appendChild(imagePreview);
 
-            // Salva la foto in locale (salvataggio provvisorio)
+            // Enregistre la photo localement (enregistrement temporaire)
             const imageData = {
                 src: imagePreview.src,
                 alt: imagePreview.alt,
             };
 
-            // Memorizza i dati dell'immagine nel localStorage
+            // Stock les données de l'image dans le localStorage
             localStorage.setItem('temporaryImage', JSON.stringify(imageData));
 
         } else {
-            alert('Il formato o la dimensione del file non sono validi. Assicurati che sia un file JPEG o PNG e che non superi i 4 MB.');
+            alert('Le format ou la taille du fichier ne sont pas valides. Assurez-vous qu\'il s\'agit d\'un fichier JPEG ou PNG et qu\'il ne dépasse pas 4 Mo.');
         }
     }
 }
 
 function handleTrashClick() {
-    // Rimuovi l'immagine preview
+    // Supprime l'aperçu de l'image
     const imageContainer = document.querySelector('.upload-img-container');
     imageContainer.removeChild(imageContainer.lastChild);
 
-    // Mostra nuovamente il pulsante e il paragrafo
+    // Affiche à nouveau le bouton et le paragraphe
     toggleUploadElements(true);
 
-    // Rimuovi l'icona "trash"
+    // Supprime l'icône corbeille
     const trashIcon = document.querySelector('.blackbox');
     trashIcon.parentNode.removeChild(trashIcon);
-
-    
 }
