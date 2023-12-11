@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
             uploadPhoto(formData);
         } else {
             // Si tous les champs ne sont pas remplis, affiche une alerte
-            alert('Compila tutti i campi prima di inviare.');
+            alert('Remplissez tous les champs avant d\'envoyer.');
         }
     });
 });
@@ -73,6 +73,6 @@ async function uploadPhoto(formData) {
         window.location.href = 'logged.html';
     } catch (error) {
         // Si une erreur s'est produite, affiche-la dans la console
-        console.error('Si è verificato un problema con l\'operazione fetch:', error);
+        console.error('Une erreur s\'est produite lors de l\'opération fetch :', error);
     }
 }

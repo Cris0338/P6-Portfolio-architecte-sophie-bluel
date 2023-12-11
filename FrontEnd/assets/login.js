@@ -5,14 +5,15 @@ let classefetch = null;
 loginForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
+    // Récupération des éléments input pour l'email et le mot de passe
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
+    // Récupération de l'élément pour afficher les messages d'erreur
     let verifierDonnees = document.getElementById('verifierDonnees');
     verifierDonnees.style.color = 'red';
     verifierDonnees.style.fontSize = '20px';
     verifierDonnees.style.whiteSpace = 'nowrap';
 
-    
     // Animation d'erreur pour verifierDonnées
     verifierDonnees.animate(
         [
@@ -41,19 +42,26 @@ loginForm.addEventListener('submit', function (event) {
 
         // Déclare la variable classefetch pour qu'elle soit accessible dans tout le fichier
         fetch('http://localhost:5678/api/users/login', {
-            method: 'POST',
+            // Spécifie la méthode HTTP utilisée (POST pour l'authentification)
+            method: 'POST', 
             headers: {
-                'Content-Type': 'application/json',
+                // Indique que le contenu envoyé est au format JSON
+                'Content-Type': 'application/json', 
             },
-            body: JSON.stringify(user),
+            // Convertit l'objet user en chaîne JSON pour l'envoyer dans le corps de la requête
+            body: JSON.stringify(user), 
         })
             .then(response => {
+                // Gère la réponse de la requête HTTP
                 if (!response.ok) {
+                    // Si la réponse n'est pas OK, lance une erreur avec le statut HTTP
                     throw new Error(`Erreur HTTP ! Statut : ${response.status}`);
                 }
-                return response.json();
+                // Convertit la réponse en JSON
+                return response.json(); 
             })
             .then(json => {
+                // La réponse du serveur est stockée dans la variable classefetch
                 classefetch = json;
                 console.log(`fetch: `, classefetch);
 
@@ -72,10 +80,11 @@ loginForm.addEventListener('submit', function (event) {
                 }
             })
             .catch(e => {
+                // Gestion des erreurs liées à l'opération fetch
                 console.log("Il y a eu un problème avec votre opération fetch : " + e.message);
                 verifierDonnees.textContent = "Identifiants incorrects. Veuillez réessayer.";
             });
-            
+
     }
 
     function checkDonnees(serverData) {
