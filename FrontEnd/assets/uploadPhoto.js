@@ -56,7 +56,7 @@ async function uploadPhoto(formData) {
         const response = await fetch('http://localhost:5678/api/works', {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('authToken')
+                'Authorization': 'Bearer ' + sessionStorage.getItem('authToken')
             },
             body: formData,
         });
@@ -66,8 +66,8 @@ async function uploadPhoto(formData) {
             throw new Error(`Errore HTTP! Stato: ${response.status}`);
         }
 
-        // Supprime l'image temporaire du localStorage
-        localStorage.removeItem('temporaryImage');
+        // Supprime l'image temporaire du sessionStorage
+        sessionStorage.removeItem('temporaryImage');
 
         // Redirige l'utilisateur vers la page 'logged.html'
         window.location.href = 'logged.html';
@@ -76,3 +76,7 @@ async function uploadPhoto(formData) {
         console.error('Une erreur s\'est produite lors de l\'opération fetch :', error);
     }
 }
+
+// window.location.href = 'logged.html'; interdit
+// rappel fonction js qui recharge la galerie
+

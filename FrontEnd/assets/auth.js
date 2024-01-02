@@ -5,15 +5,15 @@ let loginLink = document.getElementById('loginLink');
 
 // Vérifie si l'utilisateur est connecté
 function checkUserLoggedIn() {
-    // Récupére le token du localStorage
-    let token = localStorage.getItem('authToken');
+    // Récupère le token du sessionStorage
+    let token = sessionStorage.getItem('authToken');
 
     // Si le token existe, l'utilisateur est connecté
     if (token) {
         // Change le texte du lien en 'Logout'
         loginLink.textContent = 'Logout';
         loginLink.href = '#';
-        // Ajoute un écouteur d'événements pour gérer le déconnexion
+        // Ajoute un écouteur d'événements pour gérer la déconnexion
         loginLink.addEventListener('click', logout);
 
         // Ajoute le lien vers logged.html dans le menu
@@ -40,18 +40,14 @@ function checkUserLoggedIn() {
 
 // Fonction pour gérer la déconnexion
 function logout(event) {
-    event.preventDefault();
-    // Supprime le token du localStorage
-    localStorage.removeItem('authToken');
+    if (event) {
+        event.preventDefault();
+    }
+    // Supprime le token du sessionStorage
+    sessionStorage.removeItem('authToken');
     // Redirige l'utilisateur vers la page de connexion
     window.location.href = 'login.html';
 }
 
 // Exécute la fonction checkUserLoggedIn lorsque la page est chargée
 window.addEventListener('DOMContentLoaded', checkUserLoggedIn);
-
-// Ajoute un gestionnaire pour l'événement beforeunload
-window.addEventListener('beforeunload', function () {
-    // Déconnecte l'utilisateur avant qu'il ne quitte la page
-    logout();
-});

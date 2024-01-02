@@ -79,8 +79,8 @@ function handleFileSelect() {
                 alt: imagePreview.alt,
             };
 
-            // Stock les données de l'image dans le localStorage
-            localStorage.setItem('temporaryImage', JSON.stringify(imageData));
+            // Stock les données de l'image dans le sessionStorage
+            sessionStorage.setItem('temporaryImage', JSON.stringify(imageData));
 
         } else {
             alert('Le format ou la taille du fichier ne sont pas valides. Assurez-vous qu\'il s\'agit d\'un fichier JPEG ou PNG et qu\'il ne dépasse pas 4 Mo.');

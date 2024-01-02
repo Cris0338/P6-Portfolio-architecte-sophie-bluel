@@ -70,8 +70,8 @@ loginForm.addEventListener('submit', function (event) {
                     // Si tout est ok, redirige vers 'logged.html'
                     window.location.href = 'logged.html';
 
-                    // Enregistre le jeton dans le localStorage
-                    localStorage.setItem('authToken', classefetch.token);
+                    // Enregistre le jeton dans le sessionStorage
+                    sessionStorage.setItem('authToken', classefetch.token);
                 } else {
                     // Sinon, affiche une erreur
                     console.log("Erreur dans l'identifiant ou le mot de passe");

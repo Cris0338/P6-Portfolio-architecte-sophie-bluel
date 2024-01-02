@@ -6,7 +6,7 @@ import { getAllData } from './api.js';
 // Obtien les données de l'API
 let projects = await getAllData();
 
-// Obtene des références aux éléments HTML
+// Obtien des références aux éléments HTML
 const galleryModal = document.getElementById('galleryModal');
 const galleryContent = document.querySelector('.gallery-content');
 const overlay = document.querySelector('.modal-overlay');
@@ -69,17 +69,17 @@ xMarkIcon.addEventListener('click', () => {
     overlay.style.display = 'none';
 });
 
-// Ajoute un écouteur d'événements pour ouvrir la modal lorsque l'utilisateur clique sur le conteneur de modification
+// Ajoute un écouteur d'événements pour ouvrir la modale lorsque l'utilisateur clique sur le conteneur de modification
 modifierContainer.addEventListener('click', openModal);
 
-// Fonction pour fermer la modal
+// Fonction pour fermer la modale
 function closeModal(event) {
-    // Vérifie si l'utilisateur a cliqué à l'intérieur de la modal
+    // Vérifie si l'utilisateur a cliqué à l'intérieur de la modale
     const isInsideModal = event.target.closest('.modal') || event.target.closest('.modal2');
 
-    // Si l'utilisateur a cliqué en dehors de la modal, ferme celle-ci
+    // Si l'utilisateur a cliqué en dehors de la modale, ferme celle-ci
     if (!isInsideModal) {
-        // Ferme la modal d'upload et ouvrez la modal de la galerie
+        // Ferme la modal d'upload et ouvrez la modale de la galerie
         uploadModal.style.display = 'none';
         galleryModal.style.display = 'flex';
         // Rétablis le défilement de la page
@@ -89,7 +89,7 @@ function closeModal(event) {
     }
 }
 
-// Fonction pour ouvrir la modal
+// Fonction pour ouvrir la modale
 function openModal() {
     // Empêche le défilement de la page
     document.body.style.overflow = 'hidden';
@@ -104,7 +104,7 @@ async function deleteImageCallback(projectId) {
         const response = await fetch(`http://localhost:5678/api/works/${projectId}`, {
             method: 'DELETE',
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('authToken')
+                'Authorization': 'Bearer ' + sessionStorage.getItem('authToken')
             }
         });
 
@@ -163,7 +163,7 @@ addPhoto.addEventListener('click', () => {
     uploadModal.style.display = 'flex';
 });
 
-// Obtene une référence à l'icône de retour
+// Obtien une référence à l'icône de retour
 const backBtn = document.querySelector('.fa-arrow-left');
 
 // Ajoute un écouteur d'événements pour fermer la modal d'upload et ouvrir la modal de la galerie lorsque l'utilisateur clique sur l'icône de retour
