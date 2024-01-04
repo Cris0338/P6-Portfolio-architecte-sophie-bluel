@@ -17,7 +17,7 @@ const modifierContainer = document.querySelector('.modifiercontainer');
 galleryModal.style.display = 'flex';
 
 // Fonction pour afficher les projets dans la modal
-function renderProjectsModal(projects) {
+export function renderProjectsModal(projects) {
     // Vide le contenu de la galerie
     galleryContent.innerHTML = '';
 
@@ -125,7 +125,7 @@ async function deleteImageCallback(projectId) {
 }
 
 // Fonction pour afficher les projets
-function renderProjects(projects) {
+export function renderProjects(projects) {
     const gallery = document.querySelector('.gallery');
     // Vide la galerie
     gallery.innerHTML = '';

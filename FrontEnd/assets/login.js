@@ -63,7 +63,6 @@ loginForm.addEventListener('submit', function (event) {
             .then(json => {
                 // La réponse du serveur est stockée dans la variable classefetch
                 classefetch = json;
-                console.log(`fetch: `, classefetch);
 
                 // Vérification des données de l'utilisateur
                 if (checkDonnees(classefetch)) {
@@ -89,7 +88,6 @@ loginForm.addEventListener('submit', function (event) {
 
     function checkDonnees(serverData) {
         // Renvoie true si les données sont ok, sinon renvoie false
-        console.log("checkDonnees: ", serverData.token);
         return serverData.token;
     }
 });

@@ -8,7 +8,7 @@ const uploadBtn = document.querySelector('.btn-up-photo');
 // Ajoute un gestionnaire d'événements pour le changement de sélection de fichier
 upfile.addEventListener('change', handleFileSelect);
 
-function toggleUploadElements(show) {
+export function toggleUploadElements(show) {
     const faImage = document.querySelector('.fa-image');
     const infoParagraph = document.querySelector('.upload-img-container p');
 
@@ -30,7 +30,8 @@ function showTrashIcon() {
     // Crée le carré noir
     const squareDiv = document.createElement('div');
     squareDiv.classList.add(`blackbox`);
-
+// 
+    squareDiv.setAttribute('id', 'trashIcon');
     // Crée l'icône corbeille blanche
     const trashIcon = document.createElement('i');
     trashIcon.classList.add('fa-solid', 'fa-trash-alt', 'trash-icon', 'white-trash-icon');
@@ -41,16 +42,18 @@ function showTrashIcon() {
     // Ajoute un événement click pour supprimer l'image
     trashIcon.addEventListener('click', handleTrashClick);
 
+    
+
     // Ajoute l'icône "corbeille" dans le carré noir
     squareDiv.appendChild(trashIcon);
 
     // Ajoute le carré noir en haut à droite du conteneur
     uploadContainer.style.position = 'relative'; // Ajouté pour garantir que le positionnement absolu fonctionne correctement
     uploadContainer.appendChild(squareDiv);
+
 }
 
 function handleFileSelect() {
-    console.log(handleFileSelect)
     const selectedFile = upfile.files[0];
 
     // Si un fichier est sélectionné
@@ -71,6 +74,7 @@ function handleFileSelect() {
             const imagePreview = document.createElement('img');
             imagePreview.src = URL.createObjectURL(selectedFile);
             imagePreview.alt = 'Selected Image';
+            imagePreview.setAttribute('id', 'selected-image');
             imageContainer.appendChild(imagePreview);
 
             // Enregistre la photo localement (enregistrement temporaire)
