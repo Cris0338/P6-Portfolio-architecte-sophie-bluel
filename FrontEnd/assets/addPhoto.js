@@ -30,7 +30,7 @@ function showTrashIcon() {
     // Crée le carré noir
     const squareDiv = document.createElement('div');
     squareDiv.classList.add(`blackbox`);
-// 
+    // Attribution de id
     squareDiv.setAttribute('id', 'trashIcon');
     // Crée l'icône corbeille blanche
     const trashIcon = document.createElement('i');
@@ -42,7 +42,7 @@ function showTrashIcon() {
     // Ajoute un événement click pour supprimer l'image
     trashIcon.addEventListener('click', handleTrashClick);
 
-    
+
 
     // Ajoute l'icône "corbeille" dans le carré noir
     squareDiv.appendChild(trashIcon);
