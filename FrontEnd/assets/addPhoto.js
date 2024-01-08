@@ -92,7 +92,9 @@ function handleFileSelect() {
     }
 }
 
-function handleTrashClick() {
+function handleTrashClick(event) {
+    event.stopPropagation();
+
     // Supprime l'aperçu de l'image
     const imageContainer = document.querySelector('.upload-img-container');
     imageContainer.removeChild(imageContainer.lastChild);
